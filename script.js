@@ -97,16 +97,16 @@
         }
 
         downloadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
             const email = emailInput ? emailInput.value.trim() : '';
 
             if (!email) {
-                e.preventDefault();
                 showError('Please enter your email address.');
                 return;
             }
 
             if (!validateEmail(email)) {
-                e.preventDefault();
                 showError('Please enter a valid email address.');
                 return;
             }
@@ -115,13 +115,30 @@
 
             // Local development handling
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                e.preventDefault();
                 console.log('Form submitted with email:', email);
-                alert('Form submission simulated (local dev). Email: ' + email);
+                window.location.href = '/success.html';
                 return;
             }
 
-            // In production, form will submit normally to Netlify
+            // Submit form via fetch and redirect to success page
+            const formData = new FormData(downloadForm);
+
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    window.location.href = '/success.html';
+                } else {
+                    showError('Something went wrong. Please try again.');
+                }
+            })
+            .catch(function(error) {
+                console.error('Form submission error:', error);
+                showError('Something went wrong. Please try again.');
+            });
         });
     }
 
