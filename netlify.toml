@@ -1,0 +1,15 @@
+[build]
+  publish = "/"
+  functions = "netlify/functions"
+
+[[forms]]
+  name = "download-form"
+
+[context.production.environment]
+  SITE_URL = "https://the-ghosts-we-carry.netlify.app"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"

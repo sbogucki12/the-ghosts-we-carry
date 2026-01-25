@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+node_modules/
+npm-debug.log*
+.env
+.env.local
+.netlify/
+*.docx
+*.doc
+!The Ghosts We Carry.pdf
+!robots.txt
+!sitemap.xml
