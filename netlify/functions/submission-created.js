@@ -191,10 +191,11 @@ Crisis Text Line: Text HOME to 741741
 `;
 
     try {
-        // Send the email
+        // Send the email to user with BCC to author for courtesy copy
         const info = await transporter.sendMail({
             from: `"The Ghosts We Carry" <${EMAIL_USER}>`,
             to: email,
+            bcc: EMAIL_USER,
             subject: 'Your Copy of "The Ghosts We Carry"',
             text: textContent,
             html: htmlContent
