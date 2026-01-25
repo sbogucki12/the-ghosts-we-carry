@@ -906,6 +906,59 @@ body::before {
     align-items: center;
 }
 
+.success-info {
+    background: rgba(45, 42, 36, 0.6);
+    border: 1px solid rgba(201, 185, 154, 0.2);
+    border-left: 3px solid var(--color-amber);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.success-info p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-cream);
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+}
+
+.success-info p:last-child {
+    margin-bottom: 0;
+}
+
+.success-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.success-info li {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--color-sand);
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.success-info li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-amber);
+}
+
+.success-info a {
+    color: var(--color-amber);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.success-info a:hover {
+    opacity: 0.8;
+}
+
 .success-note {
     font-family: var(--font-ui);
     font-size: 0.85rem;
