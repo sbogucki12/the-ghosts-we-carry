@@ -12,3 +12,29 @@ npm-debug.log*
 !The Ghosts We Carry.pdf
 !robots.txt
 !sitemap.xml
+
+
+# Build / cache
+.cache/
+dist/
+build/
+.parcel-cache/
+.next/
+.nuxt/
+.serverless/
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files (keep examples)
+.env.*
+!.env.example
+
+# Misc
+.sass-cache/

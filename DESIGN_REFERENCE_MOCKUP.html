@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ghosts We Carry - Website Mockup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-deep: #1a1a2e;
+            --color-charcoal: #16213e;
+            --color-sand: #c9b99a;
+            --color-amber: #d4a853;
+            --color-olive: #4a5240;
+            --color-cream: #f5f5f0;
+            --color-warm-bg: #2d2a24;
+            --font-display: 'Libre Baskerville', serif;
+            --font-body: 'Source Serif 4', serif;
+            --font-ui: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-cream);
+            line-height: 1.7;
+            background: var(--color-deep);
+        }
+
+        /* Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(26, 26, 46, 0.95), transparent);
+            transition: background 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            color: var(--color-sand);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--color-cream);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--color-amber);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(201, 185, 154, 0.08) 0%, transparent 60%),
+                linear-gradient(to bottom, var(--color-deep) 0%, var(--color-charcoal) 100%);
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, var(--color-charcoal));
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+            color: var(--color-cream);
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--color-sand);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-quote {
+            font-family: var(--font-body);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            color: var(--color-cream);
+            opacity: 0.95;
+        }
+
+        .hero-quote span {
+            color: var(--color-amber);
+        }
+
+        .btn-primary {
+            font-family: var(--font-ui);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 1.1rem 2.5rem;
+            background: var(--color-amber);
+            color: var(--color-deep);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-cream);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 168, 83, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: var(--color-sand);
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Premise Section */
+        .premise {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--color-charcoal), var(--color-warm-bg));
+        }
+
+        .premise-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .premise p {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            color: var(--color-cream);
+        }
+
+        .premise p:first-child {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--color-amber);
+            margin-bottom: 2rem;
+        }
+
+        .premise p em {
+            color: var(--color-sand);
+            font-style: normal;
+        }
+
+        /* Three Threads Section */
+        .threads {
+            padding: 6rem 2rem;
+            background: var(--color-warm-bg);
+        }
+
+        .threads-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .threads-header h2 {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-sand);
+            margin-bottom: 1rem;
+        }
+
+        .threads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .thread-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.6));
+            border: 1px solid rgba(201, 185, 154, 0.15);
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thread-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-amber);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .thread-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .thread-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 168, 83, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .thread-card.combat { border-top: 3px solid var(--color-olive); }
+        .thread-card.isolation { border-top: 3px solid var(--color-sand); }
+        .thread-card.redemption { border-top: 3px solid var(--color-amber); }
+
+        .thread-label {
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-sand);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .thread-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-cream);
+            margin-bottom: 1.5rem;
+        }
+
+        .thread-excerpt {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: rgba(245, 245, 240, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .thread-link {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: var(--color-amber);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s ease;
+        }
+
+        .thread-link:hover {
+            gap: 1rem;
+        }
+
+        /* Featured Excerpt Section */
+        .excerpt-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, var(--color-deep), #0f0f1a);
+            position: relative;
+        }
+
+        .excerpt-container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .excerpt-label {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-sand);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .excerpt-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            color: var(--color-cream);
+            margin-bottom: 3rem;
+        }
+
+        .excerpt-text {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            line-height: 2;
+            color: rgba(245, 245, 240, 0.9);
+        }
+
+        .excerpt-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+
+        .excerpt-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .excerpt-text p:first-of-type::first-letter {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            float: left;
+            line-height: 1;
+            padding-right: 0.5rem;
+            color: var(--color-amber);
+        }
+
+        .excerpt-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-secondary {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--color-amber);
+            border: 1px solid var(--color-amber);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-amber);
+            color: var(--color-deep);
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 8rem 2rem;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(212, 168, 83, 0.1) 0%, transparent 50%),
+                linear-gradient(to bottom, #2d2a24, #3d3830);
+            text-align: center;
+        }
+
+        .download-container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .download-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--color-cream);
+            margin-bottom: 1rem;
+        }
+
+        .download-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--color-sand);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .download-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-form input[type="email"] {
+            font-family: var(--font-ui);
+            font-size: 1rem;
+            padding: 1.1rem 1.5rem;
+            background: rgba(245, 245, 240, 0.08);
+            border: 1px solid rgba(201, 185, 154, 0.3);
+            color: var(--color-cream);
+            transition: all 0.3s ease;
+        }
+
+        .download-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--color-amber);
+            background: rgba(245, 245, 240, 0.12);
+        }
+
+        .download-form input[type="email"]::placeholder {
+            color: rgba(201, 185, 154, 0.6);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--color-sand);
+            opacity: 0.8;
+        }
+
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            background: var(--color-charcoal);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--color-deep), var(--color-warm-bg));
+            border: 1px solid rgba(201, 185, 154, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--color-sand);
+            opacity: 0.6;
+        }
+
+        .about-content h2 {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-sand);
+            margin-bottom: 1rem;
+        }
+
+        .about-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-cream);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.9;
+            color: rgba(245, 245, 240, 0.85);
+            margin-bottom: 1rem;
+        }
+
+        .about-credentials {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(201, 185, 154, 0.2);
+        }
+
+        .about-credentials span {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--color-sand);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .about-links a {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--color-amber);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .about-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Updates Section */
+        .updates-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, var(--color-charcoal), var(--color-deep));
+            text-align: center;
+        }
+
+        .updates-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .updates-container h2 {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-sand);
+            margin-bottom: 1rem;
+        }
+
+        .updates-status {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--color-cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .updates-date {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--color-amber);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: #0f0f1a;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--color-cream);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--color-sand);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-amber);
+        }
+
+        .footer-crisis {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(201, 185, 154, 0.15);
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: rgba(201, 185, 154, 0.6);
+            line-height: 2;
+        }
+
+        .footer-crisis strong {
+            color: var(--color-sand);
+        }
+
+        .footer-copyright {
+            margin-top: 2rem;
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            color: rgba(201, 185, 154, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 4rem;
+            }
+
+            .threads-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-image {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .download-form {
+                flex-direction: column;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-title { animation-delay: 0.1s; }
+        .hero-subtitle { animation-delay: 0.2s; }
+        .hero-quote { animation-delay: 0.4s; }
+        .btn-primary { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">BOGOODSKI</a>
+        <div class="nav-links">
+            <a href="#excerpt">Excerpt</a>
+            <a href="#download">Download</a>
+            <a href="#about">About</a>
+            <a href="#updates">Updates</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">The Ghosts We Carry</h1>
+            <p class="hero-subtitle">From Combat to the Disconnected Generation</p>
+            <p class="hero-quote">
+                "At forty-two, he mastered the art of the exit.<br>
+                Now he's learning something harder: <span>how to stay in the room.</span>"
+            </p>
+            <a href="#download" class="btn-primary">Download Free Draft</a>
+        </div>
+        <div class="scroll-indicator">
+            ↓ SCROLL
+        </div>
+    </section>
+
+    <!-- Premise Section -->
+    <section class="premise">
+        <div class="premise-content">
+            <p>This is not a war story.</p>
+            <p>It's a story about what happens <em>after</em>.</p>
+            <p>About a generation more connected than ever—and more alone.</p>
+            <p>About patterns carved so deep they feel like fate.</p>
+            <p>About the love that finally said: <em>don't quit on me.</em></p>
+        </div>
+    </section>
+
+    <!-- Three Threads Section -->
+    <section class="threads">
+        <div class="threads-header">
+            <h2>Three Threads</h2>
+        </div>
+        <div class="threads-grid">
+            <div class="thread-card combat">
+                <span class="thread-label">Part III</span>
+                <h3 class="thread-title">Combat</h3>
+                <p class="thread-excerpt">
+                    "The missile screamed at him before ending in a massive explosion. The 2nd Brigade TOC was completely disintegrated. Armored vehicles had simply disappeared."
+                </p>
+                <a href="#" class="thread-link">Read excerpt →</a>
+            </div>
+            <div class="thread-card isolation">
+                <span class="thread-label">Part XI</span>
+                <h3 class="thread-title">Isolation</h3>
+                <p class="thread-excerpt">
+                    "Three men in three separate units, experiencing three variations of the same millennial condition—never more connected, never more alone."
+                </p>
+                <a href="#" class="thread-link">Read excerpt →</a>
+            </div>
+            <div class="thread-card redemption">
+                <span class="thread-label">Part XVII</span>
+                <h3 class="thread-title">Redemption</h3>
+                <p class="thread-excerpt">
+                    "For the first time in his life, the pain of leaving would exceed the pain of staying. She became the immovable object his pattern couldn't overcome."
+                </p>
+                <a href="#" class="thread-link">Read excerpt →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Excerpt Section -->
+    <section class="excerpt-section" id="excerpt">
+        <div class="excerpt-container">
+            <p class="excerpt-label">Featured Excerpt</p>
+            <h2 class="excerpt-title">"The Ghosts"</h2>
+            <div class="excerpt-text">
+                <p>The ghosts follow him, though most people can't see them. They sit in the empty chair across from him at breakfast. They ride shotgun on long drives. They stand at the foot of his bed on sleepless nights. Not metaphorical ghosts. He's too literal-minded for that. These are the actual dead, preserved in his memory with high-definition clarity.</p>
+                <p>But most persistent are Kuhns and Kinslow. They visit him more frequently than the others, their presence particularly acute during his morning shower as he brushes his teeth—a peculiar habit he's maintained for years, the water cascading over his shoulders as he methodically cleans each tooth, feeling the shape of them under the bristles.</p>
+                <p>The tactile sensation inevitably conjures thoughts of Kuhns, of the teeth that should have been in Ramadi instead of his own.</p>
+            </div>
+            <div class="excerpt-cta">
+                <a href="#" class="btn-secondary">Read Full Excerpt →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section" id="download">
+        <div class="download-container">
+            <h2 class="download-title">Download the Free Draft</h2>
+            <p class="download-subtitle">
+                The foundational content is complete.<br>
+                Your feedback shapes what it becomes.
+            </p>
+            <form class="download-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="btn-primary">Send Me the Manuscript</button>
+            </form>
+            <div class="trust-badges">
+                <span>✓ No spam, ever</span>
+                <span>✓ Rare updates only</span>
+                <span>✓ Direct PDF access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                [AUTHOR PHOTO]
+            </div>
+            <div class="about-content">
+                <h2>About the Author</h2>
+                <h3>Steve Bogucki</h3>
+                <p>
+                    Combat veteran. OIF I with 2nd Brigade, 3rd Infantry Division during the invasion. Ramadi 2004-2005 with 1/503rd Infantry as a Forward Observer.
+                </p>
+                <p>
+                    FAA Division Manager for AI & Data Analytics. Long Beach, California.
+                </p>
+                <p>
+                    This is his first book.
+                </p>
+                <div class="about-credentials">
+                    <span>• Two combat deployments to Iraq</span>
+                    <span>• Former Presidential guest (Storm the Hill, 2007)</span>
+                    <span>• Federal service since 2010</span>
+                </div>
+                <div class="about-links">
+                    <a href="#">LinkedIn →</a>
+                    <a href="#">Instagram →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section class="updates-section" id="updates">
+        <div class="updates-container">
+            <h2>Manuscript Status</h2>
+            <p class="updates-status">Preliminary Final Draft</p>
+            <p class="updates-date">Last updated: January 11, 2026</p>
+            <a href="#" class="btn-secondary">View Full Changelog →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-title">The Ghosts We Carry</p>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">Excerpt</a>
+            <a href="#">Changelog</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-crisis">
+            <strong>If you're struggling:</strong><br>
+            Veterans Crisis Line: 988 (press 1) · Crisis Text Line: Text HOME to 741741
+        </div>
+        <p class="footer-copyright">
+            © 2026 Steve Bogucki. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
