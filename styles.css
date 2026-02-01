@@ -285,6 +285,25 @@ body::before {
     color: var(--color-deep);
 }
 
+.btn-tertiary {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--color-sand);
+    border: 1px solid rgba(201, 185, 154, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-tertiary:hover {
+    border-color: var(--color-sand);
+    color: var(--color-cream);
+}
+
 /* ==========================================
    Premise Section
    ========================================== */
@@ -1132,6 +1151,45 @@ body::before {
 }
 
 /* ==========================================
+   Responsive - Tablet (768px) - Reader
+   ========================================== */
+@media (max-width: 768px) {
+    .reader-nav-links {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .reader-nav-prev,
+    .reader-nav-next {
+        max-width: 100%;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .reader-nav-center {
+        order: -1;
+    }
+
+    .reader-progress-text {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .toc-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .toc-actions .btn-secondary,
+    .toc-actions .btn-tertiary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+/* ==========================================
    Responsive - Mobile (480px)
    ========================================== */
 @media (max-width: 480px) {
@@ -1165,6 +1223,321 @@ body::before {
         width: 100%;
         text-align: center;
     }
+}
+
+/* ==========================================
+   Table of Contents Page
+   ========================================== */
+.toc-page {
+    min-height: 100vh;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(to bottom, var(--color-deep), var(--color-charcoal));
+}
+
+.toc-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.toc-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.toc-label {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-sand);
+    margin-bottom: 1rem;
+}
+
+.toc-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-cream);
+    margin-bottom: 0.5rem;
+}
+
+.toc-subtitle {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--color-sand);
+    font-size: 1.1rem;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    border-bottom: 1px solid rgba(201, 185, 154, 0.1);
+}
+
+.toc-item a {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.25rem 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.toc-item a:hover {
+    background: rgba(212, 168, 83, 0.08);
+    padding-left: 1.5rem;
+}
+
+.toc-item-number {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--color-amber);
+    min-width: 60px;
+}
+
+.toc-item-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--color-cream);
+    transition: color 0.2s ease;
+}
+
+.toc-item a:hover .toc-item-title {
+    color: var(--color-amber);
+}
+
+.toc-item-special a {
+    padding-left: 1rem;
+}
+
+.toc-item-special .toc-item-title {
+    font-style: italic;
+    color: var(--color-sand);
+}
+
+.toc-item-special a:hover .toc-item-title {
+    color: var(--color-amber);
+}
+
+.toc-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+   Chapter Reader Page
+   ========================================== */
+.reader-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(201, 185, 154, 0.2);
+    z-index: 200;
+}
+
+.reader-progress-bar {
+    height: 100%;
+    background: var(--color-amber);
+    width: 0%;
+    transition: width 0.1s ease-out;
+}
+
+.reader-page {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--color-deep), var(--color-charcoal), var(--color-warm-bg));
+}
+
+.reader-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.reader-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 185, 154, 0.2);
+}
+
+.reader-part-number {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.reader-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-cream);
+    margin-bottom: 0;
+}
+
+.reader-content {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 2;
+    color: rgba(245, 245, 240, 0.9);
+}
+
+.reader-content p {
+    margin-bottom: 1.5rem;
+    text-indent: 2em;
+}
+
+.reader-content p:first-of-type {
+    text-indent: 0;
+}
+
+.reader-content p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    float: left;
+    line-height: 1;
+    padding-right: 0.5rem;
+    color: var(--color-amber);
+}
+
+.reader-content p.no-indent {
+    text-indent: 0;
+}
+
+.reader-content p.no-indent::first-letter {
+    font-size: inherit;
+    float: none;
+    padding-right: 0;
+    color: inherit;
+}
+
+.reader-content a {
+    color: var(--color-amber);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.reader-content a:hover {
+    opacity: 0.8;
+}
+
+.reader-content em {
+    color: var(--color-sand);
+}
+
+/* Reader Navigation */
+.reader-nav {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(201, 185, 154, 0.2);
+}
+
+.reader-nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.reader-nav-prev,
+.reader-nav-next {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    max-width: 200px;
+}
+
+.reader-nav-prev {
+    align-items: flex-start;
+}
+
+.reader-nav-next {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.reader-nav-label {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-sand);
+    margin-bottom: 0.25rem;
+}
+
+.reader-nav-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--color-cream);
+    transition: color 0.2s ease;
+}
+
+.reader-nav-prev:hover .reader-nav-title,
+.reader-nav-next:hover .reader-nav-title {
+    color: var(--color-amber);
+}
+
+.reader-nav-prev.disabled,
+.reader-nav-next.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.reader-nav-center {
+    display: flex;
+    gap: 1rem;
+}
+
+.reader-nav-center a {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--color-sand);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(201, 185, 154, 0.3);
+    transition: all 0.2s ease;
+}
+
+.reader-nav-center a:hover {
+    border-color: var(--color-amber);
+    color: var(--color-amber);
+}
+
+/* Progress indicator text */
+.reader-progress-text {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--color-sand);
+    background: rgba(26, 26, 46, 0.9);
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(201, 185, 154, 0.2);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.reader-progress-text.visible {
+    opacity: 1;
 }
 
 /* ==========================================

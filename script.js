@@ -188,6 +188,54 @@
     }
 
     // ==========================================
+    // Reader Progress Tracker
+    // ==========================================
+    const readerProgressBar = document.querySelector('.reader-progress-bar');
+    const readerProgressText = document.querySelector('.reader-progress-text');
+    const readerContent = document.querySelector('.reader-content');
+
+    if (readerProgressBar && readerContent) {
+        let progressTimeout;
+
+        function updateReadingProgress() {
+            const contentRect = readerContent.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            // Calculate how much of the content has been scrolled past
+            const contentTop = contentRect.top;
+            const contentHeight = contentRect.height;
+
+            // Start counting progress when content starts to enter viewport
+            // End when bottom of content reaches top of viewport
+            const scrolled = -contentTop + windowHeight * 0.3; // Start earlier
+            const total = contentHeight;
+
+            let progress = Math.max(0, Math.min(100, (scrolled / total) * 100));
+
+            // Update progress bar
+            readerProgressBar.style.width = progress + '%';
+
+            // Update progress text
+            if (readerProgressText) {
+                readerProgressText.textContent = Math.round(progress) + '% read';
+                readerProgressText.classList.add('visible');
+
+                // Hide after inactivity
+                clearTimeout(progressTimeout);
+                progressTimeout = setTimeout(function() {
+                    readerProgressText.classList.remove('visible');
+                }, 2000);
+            }
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+        window.addEventListener('resize', updateReadingProgress);
+
+        // Initial calculation
+        updateReadingProgress();
+    }
+
+    // ==========================================
     // Initialize on DOM Ready
     // ==========================================
     document.addEventListener('DOMContentLoaded', function() {
@@ -196,6 +244,11 @@
 
         // Add loaded class for any initial animations
         document.body.classList.add('loaded');
+
+        // Initial progress update for reader pages
+        if (readerProgressBar && readerContent) {
+            updateReadingProgress();
+        }
     });
 
 })();

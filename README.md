@@ -32,20 +32,34 @@ Set these in the Netlify dashboard:
 
 ```
 /
-├── index.html          # Homepage
-├── excerpt.html        # Excerpts page
-├── changelog.html      # Latest updates
+├── index.html              # Homepage
+├── excerpt.html            # Excerpts page
+├── changelog.html          # Latest updates
 ├── changelog-archive.html  # Historical updates
-├── success.html        # Form submission success
-├── styles.css          # Main stylesheet
-├── script.js           # JavaScript functionality
-├── favicon.svg         # Site favicon
+├── success.html            # Form submission success
+├── styles.css              # Main stylesheet
+├── script.js               # JavaScript functionality
+├── favicon.svg             # Site favicon
+├── read/                   # Online reader
+│   ├── index.html          # Table of contents
+│   ├── authors-note.html   # Author's note
+│   ├── prologue.html       # Prologue
+│   └── part-[1-16].html    # All 16 parts
 ├── netlify/
 │   └── functions/
 │       ├── form-submission.js  # Email automation
 │       └── test-function.js    # Health check
 └── [config files]
 ```
+
+## Online Reader
+
+The `/read/` directory contains the complete book available for online reading. Accessible from the success page after form submission, it includes:
+
+- Table of contents with all chapters
+- Progress bar showing reading position
+- Chapter-to-chapter navigation
+- Responsive design for all devices
 
 ## Crisis Resources
 
