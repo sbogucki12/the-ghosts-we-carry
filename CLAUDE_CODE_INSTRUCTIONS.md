@@ -160,7 +160,7 @@ Content: The survivor's guilt passage about Kuhns (from Part IV)
 - Current: FAA Division Manager for AI & Data Analytics. Long Beach, California.
 - Note: This is his first book.
 - Credentials: Two combat deployments, Presidential guest (Storm the Hill 2007), Federal service since 2010
-- Links: LinkedIn (sbogucki12), Instagram (bogoodskiruns)
+- Links: LinkedIn (sbogucki12), Instagram (bogoodskighosts)
 
 ## Updates Section
 - Status: Preliminary Final Draft
