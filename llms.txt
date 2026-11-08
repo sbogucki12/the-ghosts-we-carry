@@ -25,6 +25,7 @@ Steve Bogucki is a combat veteran: OIF I with 2nd Brigade, 3rd Infantry Division
 - [Home](https://the-ghosts-we-carry.com/): Book overview, three story threads (Combat, Isolation, Redemption), featured excerpt, and About the Author
 - [Excerpts](https://the-ghosts-we-carry.com/excerpt): Selected passages from the manuscript
 - [Changelog](https://the-ghosts-we-carry.com/changelog): Revision history of the manuscript
+- [FAQ](https://the-ghosts-we-carry.com/#faq): Author FAQ: true story, themes, content notes, access, editions, and contact
 - [Read online](https://the-ghosts-we-carry.com/read/): Table of contents for the full draft
 
 ## Usage
