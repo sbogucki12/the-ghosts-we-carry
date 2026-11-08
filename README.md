@@ -2,6 +2,8 @@
 
 Marketing website for "The Ghosts We Carry" - a memoir by Steve Bogucki.
 
+Production: https://the-ghosts-we-carry.com
+
 ## Overview
 
 This is a static website hosted on Netlify with serverless functions for email automation.
@@ -26,7 +28,9 @@ Set these in the Netlify dashboard:
 - `EMAIL_SECURE` - Use TLS (false for port 587)
 - `EMAIL_USER` - Email address for sending
 - `EMAIL_PASS` - App password for email
-- `SITE_URL` - Full site URL
+- `SITE_URL` - Optional. Email links always use https://the-ghosts-we-carry.com (set in the function).
+
+Never commit `.env`. It is git-ignored.
 
 ## Structure
 
@@ -36,7 +40,13 @@ Set these in the Netlify dashboard:
 ├── excerpt.html            # Excerpts page
 ├── changelog.html          # Latest updates
 ├── changelog-archive.html  # Historical updates
-├── success.html            # Form submission success
+├── success.html            # Subscribe confirmation (noindex)
+├── 404.html                # Not-found page
+├── robots.txt              # Search/AI crawler policy
+├── sitemap.xml             # Indexable pages
+├── llms.txt                # Plain-text summary for AI search tools
+├── og-image.jpg            # 1200x630 social share image
+├── author_image.jpg        # Author photo (800x1200)
 ├── styles.css              # Main stylesheet
 ├── script.js               # JavaScript functionality
 ├── favicon.svg             # Site favicon
@@ -47,19 +57,30 @@ Set these in the Netlify dashboard:
 │   └── part-[1-16].html    # All 16 parts
 ├── netlify/
 │   └── functions/
-│       ├── form-submission.js  # Email automation
-│       └── test-function.js    # Health check
+│       └── submission-created.js  # Subscribe confirmation email (Netlify event-triggered)
 └── [config files]
 ```
 
 ## Online Reader
 
-The `/read/` directory contains the complete book available for online reading. Accessible from the success page after form submission, it includes:
+The `/read/` directory contains the complete book, free to read with no sign-up. Search engines may crawl it, but pages are `noindex`; AI training crawlers are disallowed in `robots.txt`. It includes:
 
 - Table of contents with all chapters
 - Progress bar showing reading position
 - Chapter-to-chapter navigation
 - Responsive design for all devices
+
+## Crawling Policy
+
+`robots.txt` allows search engines and AI search/answer agents everywhere. AI model-training
+crawlers (GPTBot, ClaudeBot, Google-Extended, CCBot, anthropic-ai, Omgili, and others) are
+blocked from `/read/` and the PDF.
+
+## Security
+
+- Security headers (CSP, HSTS, etc.) and redirects live in `netlify.toml`.
+- Repository files (`package.json`, `README.md`, `netlify/`) are forced to 404 because Netlify publishes the repo root.
+- `submission-created.js` cannot be called directly (Netlify returns 403) and only mails a single valid address from a genuine `download-form` submission. It never logs addresses.
 
 ## Crisis Resources
 

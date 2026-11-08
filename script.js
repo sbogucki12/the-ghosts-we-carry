@@ -18,7 +18,7 @@
         }
     }
 
-    window.addEventListener('scroll', handleNavScroll);
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
 
     // ==========================================
     // Mobile Navigation Toggle
@@ -184,7 +184,7 @@
             scrollIndicator.style.opacity = opacity * 0.6; // Base opacity is 0.6
         }
 
-        window.addEventListener('scroll', handleScrollIndicatorFade);
+        window.addEventListener('scroll', handleScrollIndicatorFade, { passive: true });
     }
 
     // ==========================================
@@ -193,11 +193,12 @@
     const readerProgressBar = document.querySelector('.reader-progress-bar');
     const readerProgressText = document.querySelector('.reader-progress-text');
     const readerContent = document.querySelector('.reader-content');
+    let updateReadingProgress = null;
 
     if (readerProgressBar && readerContent) {
         let progressTimeout;
 
-        function updateReadingProgress() {
+        updateReadingProgress = function() {
             const contentRect = readerContent.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
@@ -226,9 +227,9 @@
                     readerProgressText.classList.remove('visible');
                 }, 2000);
             }
-        }
+        };
 
-        window.addEventListener('scroll', updateReadingProgress);
+        window.addEventListener('scroll', updateReadingProgress, { passive: true });
         window.addEventListener('resize', updateReadingProgress);
 
         // Initial calculation
@@ -246,7 +247,7 @@
         document.body.classList.add('loaded');
 
         // Initial progress update for reader pages
-        if (readerProgressBar && readerContent) {
+        if (updateReadingProgress) {
             updateReadingProgress();
         }
     });

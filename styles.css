@@ -592,6 +592,51 @@ body::before {
     gap: 0.5rem;
 }
 
+/* Free access actions + optional subscribe */
+.download-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.subscribe-block {
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(201, 185, 154, 0.2);
+}
+
+.subscribe-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-weight: 400;
+    color: var(--color-cream);
+    margin-bottom: 0.75rem;
+}
+
+.subscribe-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-sand);
+    margin-bottom: 1.75rem;
+}
+
+.hp-field {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .download-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .download-actions a {
+        text-align: center;
+    }
+}
+
 /* ==========================================
    About Section
    ========================================== */
@@ -766,7 +811,7 @@ body::before {
     border-top: 1px solid rgba(201, 185, 154, 0.15);
     font-family: var(--font-ui);
     font-size: 0.75rem;
-    color: rgba(201, 185, 154, 0.6);
+    color: rgba(201, 185, 154, 0.8);
     line-height: 2;
 }
 
@@ -778,7 +823,7 @@ body::before {
     margin-top: 2rem;
     font-family: var(--font-ui);
     font-size: 0.7rem;
-    color: rgba(201, 185, 154, 0.4);
+    color: rgba(201, 185, 154, 0.72);
 }
 
 /* ==========================================

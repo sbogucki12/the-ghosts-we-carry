@@ -1,2 +1,1 @@
-# Redirects file
-# submission-created function is auto-triggered by Netlify on form submission
+# Redirects live in netlify.toml.

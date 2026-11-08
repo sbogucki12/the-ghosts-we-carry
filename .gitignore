@@ -38,3 +38,8 @@ pnpm-debug.log*
 
 # Misc
 .sass-cache/
+
+# Local tooling / private build notes (never deploy or publish)
+.claude/
+CLAUDE_CODE_INSTRUCTIONS.md
+DESIGN_REFERENCE_MOCKUP.html

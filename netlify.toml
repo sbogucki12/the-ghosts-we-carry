@@ -2,14 +2,152 @@
   publish = "/"
   functions = "netlify/functions"
 
-[[forms]]
-  name = "download-form"
+# Email confirmation for the "download-form" (author updates) form is sent by
+# netlify/functions/submission-created.js, which Netlify triggers automatically.
 
 [context.production.environment]
-  SITE_URL = "https://the-ghosts-we-carry.netlify.app"
+  SITE_URL = "https://the-ghosts-we-carry.com"
 
+# ---------------------------------------------------------------------------
+# Never serve repository/tooling files (Netlify publishes the repo root).
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/readme.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE_CODE_INSTRUCTIONS.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/deno.lock"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env.example"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/DESIGN_REFERENCE_MOCKUP.html"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# ---------------------------------------------------------------------------
+# Old Netlify subdomain -> custom domain (one canonical host for SEO)
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "https://bogoodski-book.netlify.app/*"
+  to = "https://the-ghosts-we-carry.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://the-ghosts-we-carry.netlify.app/*"
+  to = "https://the-ghosts-we-carry.com/:splat"
+  status = 301
+  force = true
+
+# ---------------------------------------------------------------------------
+# Security headers (all responses)
+# ---------------------------------------------------------------------------
 [[headers]]
   for = "/*"
   [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-Permitted-Cross-Domain-Policies = "none"
+    X-XSS-Protection = "0"
+
+# ---------------------------------------------------------------------------
+# Caching. Asset filenames are not fingerprinted, so CSS/JS revalidate daily.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+# Thank-you page should never appear in search results.
+[[headers]]
+  for = "/success*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
