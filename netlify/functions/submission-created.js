@@ -122,7 +122,7 @@ exports.handler = async (event) => {
 
             <div style="background-color: rgba(45, 42, 36, 0.8); padding: 20px; margin: 30px 0; border-left: 3px solid #d4a853;">
                 <p style="font-size: 14px; color: #c9b99a; margin: 0 0 10px 0;"><strong>Draft Status:</strong> Preliminary Final Draft</p>
-                <p style="font-size: 14px; color: rgba(245, 245, 240, 0.7); margin: 0;">Last updated: January 11, 2026</p>
+                <p style="font-size: 14px; color: rgba(245, 245, 240, 0.7); margin: 0;">Last updated: February 3, 2026</p>
             </div>
 
             <p style="font-size: 16px; line-height: 1.8; color: #f5f5f0; margin: 30px 0 0 0;">
@@ -154,7 +154,7 @@ Read online: ${readUrl}
 Download PDF: ${pdfUrl}
 
 Draft Status: Preliminary Final Draft
-Last updated: January 11, 2026
+Last updated: February 3, 2026
 
 Your feedback is invaluable. Reach me on LinkedIn:
 https://www.linkedin.com/in/sbogucki12

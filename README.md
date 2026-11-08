@@ -63,7 +63,7 @@ Never commit `.env`. It is git-ignored.
 
 ## Online Reader
 
-The `/read/` directory contains the complete book, free to read with no sign-up. Search engines may crawl it, but pages are `noindex`; AI training crawlers are disallowed in `robots.txt`. It includes:
+The `/read/` directory contains the complete book, free to read with no sign-up. Chapters are indexable and listed in `sitemap.xml`; AI training crawlers are disallowed in `robots.txt`. It includes:
 
 - Table of contents with all chapters
 - Progress bar showing reading position
