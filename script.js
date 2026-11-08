@@ -27,20 +27,55 @@
     const navLinks = document.querySelector('.nav-links');
 
     if (navToggle && navLinks) {
+        if (!navLinks.id) navLinks.id = 'site-nav-links';
+        navToggle.setAttribute('aria-controls', navLinks.id);
+        navToggle.setAttribute('aria-label', 'Open navigation');
+
+        function isMenuOpen() {
+            return navToggle.getAttribute('aria-expanded') === 'true';
+        }
+
+        function setMenu(open, returnFocus) {
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+            navToggle.classList.toggle('active', open);
+            navLinks.classList.toggle('active', open);
+            if (open) {
+                // Wait for the menu to become visible; hidden elements can't take focus.
+                const first = navLinks.querySelector('a');
+                if (first) {
+                    window.setTimeout(function() {
+                        if (isMenuOpen()) first.focus({ preventScroll: true });
+                    }, 60);
+                }
+            } else if (returnFocus) {
+                navToggle.focus();
+            }
+        }
+
         navToggle.addEventListener('click', function() {
-            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !isExpanded);
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
+            setMenu(!isMenuOpen(), false);
         });
 
-        // Close mobile nav when clicking a link
+        // Close when a link is chosen
         navLinks.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', function() {
-                navToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
+                setMenu(false, false);
             });
+        });
+
+        // Close on Escape and return focus to the menu button
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen()) {
+                setMenu(false, true);
+            }
+        });
+
+        // Close on a tap or click outside the menu
+        document.addEventListener('click', function(e) {
+            if (isMenuOpen() && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+                setMenu(false, false);
+            }
         });
     }
 
